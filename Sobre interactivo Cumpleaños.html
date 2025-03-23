@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorpresa de Cumpleaños</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffccff;
+            overflow: hidden;
+            position: relative;
+        }
+        .contenedor {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            flex-direction: column;
+        }
+        .sobre {
+            position: relative;
+            width: 300px;
+            height: 180px;
+            background: #ff69b4;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.5s ease-in-out, opacity 1s ease-in-out;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .sobre.abierto {
+            transform: translateX(-50px);
+            opacity: 0; /* Hacer desaparecer el sobre */
+        }
+        .tapa {
+            position: absolute;
+            width: 300px;
+            height: 90px;
+            background: #ff1493;
+            top: 0;
+            border-radius: 10px 10px 0 0;
+            transition: transform 0.5s ease-in-out;
+        }
+        .tapa.abierta {
+            transform: rotateX(180deg);
+        }
+        .corazon {
+            width: 50px;
+            height: 50px;
+            background: indigo;
+            position: absolute;
+            top: 35%;
+            clip-path: polygon(50% 15%, 90% 0, 100% 25%, 50% 100%, 0 25%, 10% 0);
+            animation: palpitante 1s ease-in-out infinite;
+        }
+        @keyframes palpitante {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .carta {
+            position: relative;
+            width: 320px;
+            height: 200px; /* Altura fija para la carta */
+            background: #ffffff;
+            text-align: left; /* Alineación del texto a la izquierda */
+            padding: 15px;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            border: 3px solid #ff69b4;
+            overflow: hidden;
+            margin-top: -50px; /* Ajusté la ubicación para estar más cerca de "20 años" */
+            margin-bottom: 30px; /* Añadido margen inferior */
+            transform: translateY(0); /* Posición inicial de la carta */
+            transition: transform 0.5s ease-out; /* Transición para mover hacia arriba */
+        }
+        .carta.expandida {
+            height: auto; /* Cuando se expanda, la carta ocupará el espacio necesario */
+            overflow-y: auto; /* Habilita el scroll cuando el contenido excede el límite */
+            max-height: 500px; /* Máxima altura para la carta expandida */
+            transform: translateY(-30px); /* Subir la carta al expandirse */
+        }
+        .ver-mas {
+            display: block;
+            background: #ff1493;
+            color: white;
+            border: none;
+            padding: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .serpentina {
+            position: absolute;
+            width: 10px;
+            height: 20px;
+            opacity: 0.8;
+            animation: explotar 1.5s ease-out forwards;
+        }
+        @keyframes explotar {
+            0% { transform: scale(0.5) translate(0, 0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(1.5) translate(var(--x), var(--y)) rotate(720deg); opacity: 0; }
+        }
+        .numero-20 {
+            display: none;
+            position: absolute;
+            top: 2%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            font-size: 50px;
+            font-weight: bold;
+            color: #ff3366;
+            display: flex;
+            align-items: center;
+        }
+        .numero-20 .corazon-rojo {
+            margin-left: 10px;
+            width: 30px;
+            height: 30px;
+            background: red;
+            clip-path: polygon(50% 15%, 90% 0, 100% 25%, 50% 100%, 0 25%, 10% 0);
+            animation: palpitante 1s ease-in-out infinite;
+        }
+        .nombre {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 32px;
+            font-family: 'Brush Script MT', cursive;
+            color: #ff3366;
+            font-weight: bold;
+        }
+        .mensaje {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+            margin-bottom: 20px; /* Espacio entre el texto y el botón */
+            max-height: 130px; /* Limitar la altura para que se vea solo un fragmento */
+            overflow: hidden; /* Esconde el texto que excede el límite de la altura */
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <div class="nombre">Maribel</div>
+        <div class="sobre" onclick="abrirSobre()">
+            <div class="tapa"></div>
+            <div class="corazon"></div>
+        </div>
+        <div class="carta" id="carta">
+            <p class="mensaje" id="mensaje">
+                <strong>Para:</strong> mi maquillista profesional y figura de hermana favorita ❤️
+                <br><br>
+                ¡Feliz cumpleaños! 🎉 Espero que este día esté lleno de alegría y bendiciones para ti. 
+                <br><br>
+                Quiero que vivamos y celebremos muchas más décadas juntas llenas de felicidad y hermandad. Pero por lo pronto, me concentraré en esta que empieza este año para las dos, nuestros 20s. 
+                <br><br>
+                Deseo para nosotras muchos éxitos en nuestros proyectos y la obtención de nuestras metas. Pero que al mismo tiempo, nos mantengamos fieles a nosotras mismas, llenas de amor propio, reconociendo nuestros logros y vivencias.
+                <br><br>
+                Algo que quiero mencionar, que probablemente no lo haya dicho antes, es que realmente es un gusto para mí el hecho de conocerte como amiga. Ya nos conocíamos antes, pero conocerte como amiga ha sido una experiencia maravillosa para mí.
+                <br><br>
+                Ya casi completamos una década juntas, que incluye parte de nuestras infancias. Solo me queda decirte gracias por crecer conmigo durante estos años. Ha sido un verdadero placer, y espero que podamos seguir viéndonos crecer como personas y entrar en nuevas etapas de la vida con la presencia de la otra.
+                <br><br><br>
+                <strong>Att:</strong> Eve o también conocida como Andrómeda ✨
+            </p>
+            <button class="ver-mas" onclick="expandirMensaje()">Ver más</button>
+        </div>
+    </div>
+    <div class="numero-20" id="numero20">20 años
+        <div class="corazon-rojo"></div>
+    </div>
+    <script>
+        function abrirSobre() {
+            document.querySelector('.sobre').classList.add('abierto'); // Hace desaparecer el sobre
+            document.querySelector('.tapa').classList.add('abierta');
+            setTimeout(() => {
+                document.getElementById('carta').style.display = 'block';
+                document.getElementById('numero20').style.display = 'flex';
+                explotarSerpentinas();
+            }, 500);
+        }
+        
+        function explotarSerpentinas() {
+            for (let i = 0; i < 30; i++) {
+                let serpentina = document.createElement('div');
+                serpentina.classList.add('serpentina');
+                serpentina.style.left = '50%';
+                serpentina.style.top = '50%';
+                let x = (Math.random() - 0.5) * 400 + 'px';
+                let y = (Math.random() - 0.5) * 400 + 'px';
+                serpentina.style.setProperty('--x', x);
+                serpentina.style.setProperty('--y', y);
+                serpentina.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                document.body.appendChild(serpentina);
+                setTimeout(() => serpentina.remove(), 1500);
+            }
+        }
+
+        function expandirMensaje() {
+            document.getElementById('carta').classList.toggle('expandida');
+            let mensaje = document.querySelector('.mensaje');
+            mensaje.style.maxHeight = mensaje.style.maxHeight === 'none' ? '130px' : 'none';
+
+            // Ejecutar efecto de serpentinas y ocultar el botón "Ver más"
+            explotarSerpentinas();
+            document.querySelector('.ver-mas').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
