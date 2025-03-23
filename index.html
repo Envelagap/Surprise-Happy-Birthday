@@ -21,6 +21,7 @@
             align-items: center;
             gap: 20px;
             position: relative;
+            z-index: 1;
         }
         .sobre {
             position: relative;
@@ -117,7 +118,7 @@
         .numero-20 {
             display: none;
             position: absolute;
-            top: 5%;
+            top: 0%;
             left: 50%;
             transform: translateX(-50%);
             font-size: 10vw;
@@ -137,14 +138,15 @@
         }
         .nombre {
             position: absolute;
-            top: -50px;
+            top: 5%;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 5vw;
+            font-size: 6vw;
             font-family: 'Brush Script MT', cursive;
             color: #ff3366;
             font-weight: bold;
             display: block;
+            z-index: 1;
         }
         .mensaje {
             font-size: 16px;
@@ -169,9 +171,11 @@
         @media (max-width: 600px) {
             .numero-20 {
                 font-size: 12vw;
+                top: 10%;
             }
             .nombre {
-                font-size: 7vw;
+                font-size: 8vw;
+                top: 10%;
             }
             .carta {
                 width: 90vw;
@@ -262,6 +266,7 @@
     </script>
 </body>
 </html>
+
 
 
 
