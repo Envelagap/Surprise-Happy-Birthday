@@ -23,9 +23,18 @@
             position: relative;
             z-index: 1;
         }
+        .nombre {
+            font-size: 5vw;
+            font-family: 'Brush Script MT', cursive;
+            color: #0e4e92; /* Zafiro */
+            font-weight: bold;
+            position: absolute;
+            top: 10%;
+            z-index: 3;
+        }
         .sobre {
             position: relative;
-            width: 80vw; /* Ajuste para ser más flexible */
+            width: 80vw; 
             max-width: 300px;
             height: 45vw;
             max-height: 180px;
@@ -37,7 +46,6 @@
             align-items: center;
             transition: transform 0.5s ease-in-out, opacity 1s ease-in-out;
             box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-            z-index: 2; /* Asegura que el sobre esté sobre el texto */
         }
         .sobre.abierto {
             transform: translateX(-50px);
@@ -65,7 +73,6 @@
             top: 35%;
             clip-path: polygon(50% 15%, 90% 0, 100% 25%, 50% 100%, 0 25%, 10% 0);
             animation: palpitante 1s ease-in-out infinite;
-            z-index: 3; /* Asegura que el corazón esté sobre el sobre */
         }
         @keyframes palpitante {
             0%, 100% { transform: scale(1); }
@@ -73,9 +80,9 @@
         }
         .carta {
             position: relative;
-            width: 85vw; 
+            width: 85vw;
             max-width: 320px;
-            height: 40vw; 
+            height: 40vw;
             max-height: 200px;
             background: #ffffff;
             text-align: left;
@@ -137,18 +144,6 @@
             background: red;
             clip-path: polygon(50% 15%, 90% 0, 100% 25%, 50% 100%, 0 25%, 10% 0);
             animation: palpitante 1s ease-in-out infinite;
-        }
-        .nombre {
-            position: absolute;
-            top: 5%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 6vw;
-            font-family: 'Brush Script MT', cursive;
-            color: #fff; /* Color blanco para mejorar visibilidad */
-            font-weight: bold;
-            display: block;
-            z-index: 1;
         }
         .mensaje {
             font-size: 16px;
