@@ -23,8 +23,8 @@
         }
         .sobre {
             position: relative;
-            width: 80vw; /* Ajustado para ser más responsivo */
-            max-width: 350px; /* Aseguramos un tamaño máximo */
+            width: 80vw;
+            max-width: 350px;
             height: 180px;
             background: #ff69b4;
             border-radius: 10px;
@@ -37,7 +37,7 @@
         }
         .sobre.abierto {
             transform: translateX(-50px);
-            opacity: 0; /* Hacer desaparecer el sobre */
+            opacity: 0;
         }
         .tapa {
             position: absolute;
@@ -67,25 +67,25 @@
         .carta {
             position: relative;
             width: 320px;
-            height: 200px; /* Altura fija para la carta */
+            height: 200px;
             background: #ffffff;
-            text-align: left; /* Alineación del texto a la izquierda */
+            text-align: left;
             padding: 15px;
             display: none;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             border: 3px solid #ff69b4;
             overflow: hidden;
-            margin-top: -50px; /* Ajusté la ubicación para estar más cerca de "20 años" */
-            margin-bottom: 30px; /* Añadido margen inferior */
-            transform: translateY(0); /* Posición inicial de la carta */
-            transition: transform 0.5s ease-out; /* Transición para mover hacia arriba */
+            margin-top: -50px;
+            margin-bottom: 30px;
+            transform: translateY(0);
+            transition: transform 0.5s ease-out;
         }
         .carta.expandida {
-            height: auto; /* Cuando se expanda, la carta ocupará el espacio necesario */
-            overflow-y: auto; /* Habilita el scroll cuando el contenido excede el límite */
-            max-height: 500px; /* Máxima altura para la carta expandida */
-            transform: translateY(-30px); /* Subir la carta al expandirse */
+            height: auto;
+            overflow-y: auto;
+            max-height: 500px;
+            transform: translateY(-30px);
         }
         .ver-mas {
             display: block;
@@ -99,7 +99,7 @@
         }
         .cerrar-carta {
             display: block;
-            background: #ff3366; /* Color más oscuro para el botón */
+            background: #ff3366;
             color: white;
             border: none;
             padding: 8px 16px;
@@ -112,7 +112,7 @@
             transition: background-color 0.3s ease;
         }
         .cerrar-carta:hover {
-            background: #ff1493; /* Efecto hover */
+            background: #ff1493;
         }
         .serpentina {
             position: absolute;
@@ -128,10 +128,10 @@
         .numero-20 {
             display: none;
             position: absolute;
-            top: 10%; /* Ajustado para mejor visibilidad */
+            top: 10%;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 10vw; /* Ajustado para que el texto sea responsivo */
+            font-size: 10vw;
             font-weight: bold;
             color: #ff3366;
             display: flex;
@@ -159,9 +159,14 @@
             font-size: 16px;
             line-height: 1.5;
             color: #333;
-            margin-bottom: 20px; /* Espacio entre el texto y el botón */
-            max-height: 130px; /* Limitar la altura para que se vea solo un fragmento */
-            overflow: hidden; /* Esconde el texto que excede el límite de la altura */
+            margin-bottom: 20px;
+            max-height: 130px;
+            overflow: hidden;
+        }
+        @media (max-width: 768px) {
+            .numero-20 {
+                font-size: 15vw;
+            }
         }
     </style>
 </head>
@@ -197,7 +202,7 @@
     </div>
     <script>
         function abrirSobre() {
-            document.querySelector('.sobre').classList.add('abierto'); // Hace desaparecer el sobre
+            document.querySelector('.sobre').classList.add('abierto'); 
             document.querySelector('.tapa').classList.add('abierta');
             setTimeout(() => {
                 document.getElementById('carta').style.display = 'block';
@@ -227,7 +232,6 @@
             let mensaje = document.querySelector('.mensaje');
             mensaje.style.maxHeight = mensaje.style.maxHeight === 'none' ? '130px' : 'none';
 
-            // Ejecutar efecto de serpentinas y ocultar el botón "Ver más"
             explotarSerpentinas();
             document.querySelector('.ver-mas').style.display = 'none';
         }
@@ -235,12 +239,13 @@
         function cerrarCarta() {
             document.getElementById('carta').style.display = 'none';
             document.getElementById('numero20').style.display = 'none';
-            document.querySelector('.sobre').classList.remove('abierto'); // Restaurar el sobre
-            document.querySelector('.tapa').classList.remove('abierta'); // Restaurar tapa
+            document.querySelector('.sobre').classList.remove('abierto');
+            document.querySelector('.tapa').classList.remove('abierta');
         }
     </script>
 </body>
 </html>
+
 
 
 
