@@ -97,6 +97,23 @@
             cursor: pointer;
             border-radius: 5px;
         }
+        .cerrar-carta {
+            display: block;
+            background: #ff3366; /* Color más oscuro para el botón */
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .cerrar-carta:hover {
+            background: #ff1493; /* Efecto hover */
+        }
         .serpentina {
             position: absolute;
             width: 10px;
@@ -172,6 +189,7 @@
                 <strong>Att:</strong> Eve o también conocida como Andrómeda ✨
             </p>
             <button class="ver-mas" onclick="expandirMensaje()">Ver más</button>
+            <button class="cerrar-carta" onclick="cerrarCarta()">Cerrar carta</button>
         </div>
     </div>
     <div class="numero-20" id="numero20">20 años
@@ -213,9 +231,15 @@
             explotarSerpentinas();
             document.querySelector('.ver-mas').style.display = 'none';
         }
+
+        function cerrarCarta() {
+            document.getElementById('carta').style.display = 'none';
+            document.getElementById('numero20').style.display = 'none';
+        }
     </script>
 </body>
 </html>
+
 
 
 
