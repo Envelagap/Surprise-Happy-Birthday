@@ -205,7 +205,7 @@
                 explotarSerpentinas();
             }, 500);
         }
-        
+
         function explotarSerpentinas() {
             for (let i = 0; i < 30; i++) {
                 let serpentina = document.createElement('div');
@@ -235,6 +235,8 @@
         function cerrarCarta() {
             document.getElementById('carta').style.display = 'none';
             document.getElementById('numero20').style.display = 'none';
+            document.querySelector('.sobre').classList.remove('abierto'); // Restaurar el sobre
+            document.querySelector('.tapa').classList.remove('abierta'); // Restaurar tapa
         }
     </script>
 </body>
