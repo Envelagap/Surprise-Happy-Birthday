@@ -11,23 +11,23 @@
             align-items: center;
             height: 100vh;
             background-color: #ffccff;
+            margin: 0;
             overflow: hidden;
             position: relative;
         }
         .contenedor {
             display: flex;
+            flex-direction: column;
             align-items: center;
             gap: 20px;
             position: relative;
-            flex-direction: column;
-            padding: 10px;
         }
         .sobre {
             position: relative;
-            width: 80vw; /* Ajuste de ancho para que se adapte en dispositivos pequeños */
-            max-width: 300px; /* Máximo ancho */
-            height: 45vw; /* Altura relativa */
-            max-height: 180px; /* Máxima altura */
+            width: 80vw; /* Ajuste para ser más flexible */
+            max-width: 300px;
+            height: 45vw;
+            max-height: 180px;
             background: #ff69b4;
             border-radius: 10px;
             cursor: pointer;
@@ -39,7 +39,7 @@
         }
         .sobre.abierto {
             transform: translateX(-50px);
-            opacity: 0; /* Hace desaparecer el sobre */
+            opacity: 0;
         }
         .tapa {
             position: absolute;
@@ -70,19 +70,19 @@
         }
         .carta {
             position: relative;
-            width: 85vw; /* Ancho relativo */
+            width: 85vw; 
             max-width: 320px;
-            height: 40vw; /* Altura relativa */
+            height: 40vw; 
             max-height: 200px;
             background: #ffffff;
-            text-align: left; /* Alineación del texto a la izquierda */
+            text-align: left;
             padding: 15px;
             display: none;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             border: 3px solid #ff69b4;
             overflow: hidden;
-            margin-top: -30px; /* Ajusté la ubicación para estar más cerca del número 20 */
+            margin-top: -30px;
             margin-bottom: 30px;
             transform: translateY(0);
             transition: transform 0.5s ease-out;
@@ -120,11 +120,9 @@
             top: 5%;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 10vw; /* Ajustado para ser más pequeño en pantallas grandes */
+            font-size: 10vw;
             font-weight: bold;
             color: #ff3366;
-            display: flex;
-            align-items: center;
             z-index: 2;
         }
         .numero-20 .corazon-rojo {
@@ -168,6 +166,24 @@
             width: 100%;
             text-align: center;
         }
+        @media (max-width: 600px) {
+            .numero-20 {
+                font-size: 12vw;
+            }
+            .nombre {
+                font-size: 7vw;
+            }
+            .carta {
+                width: 90vw;
+                max-width: 320px;
+                height: auto;
+                padding: 15px;
+            }
+            .ver-mas {
+                width: 100%;
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -202,7 +218,7 @@
     </div>
     <script>
         function abrirSobre() {
-            document.getElementById('nombre').style.display = 'none';  // Elimina el nombre "Maribel"
+            document.getElementById('nombre').style.display = 'none';
             document.querySelector('.sobre').classList.add('abierto');
             document.querySelector('.tapa').classList.add('abierta');
             setTimeout(() => {
@@ -241,11 +257,12 @@
             document.getElementById('numero20').style.display = 'none';
             document.querySelector('.sobre').classList.remove('abierto');
             document.querySelector('.tapa').classList.remove('abierta');
-            document.getElementById('nombre').style.display = 'block';  // Vuelve a mostrar el nombre "Maribel"
+            document.getElementById('nombre').style.display = 'block';
         }
     </script>
 </body>
 </html>
+
 
 
 
