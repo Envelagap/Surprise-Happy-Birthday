@@ -146,6 +146,7 @@
             font-family: 'Brush Script MT', cursive;
             color: #ff3366;
             font-weight: bold;
+            display: block;
         }
         .mensaje {
             font-size: 16px;
@@ -160,8 +161,8 @@
             background: #ff1493;
             color: white;
             border: none;
-            padding: 5px;
-            margin-top: 10px;
+            padding: 10px;
+            margin-top: 20px;
             cursor: pointer;
             border-radius: 5px;
             width: 100%;
@@ -171,7 +172,7 @@
 </head>
 <body>
     <div class="contenedor">
-        <div class="nombre">Maribel</div>
+        <div class="nombre" id="nombre">Maribel</div>
         <div class="sobre" onclick="abrirSobre()">
             <div class="tapa"></div>
             <div class="corazon"></div>
@@ -201,6 +202,7 @@
     </div>
     <script>
         function abrirSobre() {
+            document.getElementById('nombre').style.display = 'none';  // Elimina el nombre "Maribel"
             document.querySelector('.sobre').classList.add('abierto');
             document.querySelector('.tapa').classList.add('abierta');
             setTimeout(() => {
@@ -239,6 +241,7 @@
             document.getElementById('numero20').style.display = 'none';
             document.querySelector('.sobre').classList.remove('abierto');
             document.querySelector('.tapa').classList.remove('abierta');
+            document.getElementById('nombre').style.display = 'block';  // Vuelve a mostrar el nombre "Maribel"
         }
     </script>
 </body>
