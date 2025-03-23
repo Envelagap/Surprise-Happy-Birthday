@@ -197,6 +197,8 @@
             </p>
             <button class="ver-mas" onclick="expandirMensaje()">Ver más</button>
             <div class="corazon-cerrar" onclick="cerrarCarta()"></div>
+            <!-- Nuevo Corazón para cerrar la carta y regresar el sobre -->
+            <div class="corazon-cerrar-2" onclick="cerrarCartaConCorazon()"></div>
         </div>
     </div>
     <div class="numero-20" id="numero20">20 años
@@ -239,6 +241,21 @@
             document.getElementById('numero20').style.display = 'none';
             document.querySelector('.sobre').classList.remove('abierto');
             document.querySelector('.tapa').classList.remove('abierta');
+        }
+
+        function cerrarCartaConCorazon() {
+            document.querySelector('.carta').style.display = 'none';
+            document.querySelector('.sobre').classList.remove('abierto');
+            document.querySelector('.tapa').classList.remove('abierta');
+            // Lluvia de corazones
+            for (let i = 0; i < 50; i++) {
+                let corazon = document.createElement('div');
+                corazon.classList.add('corazon');
+                corazon.style.left = `${Math.random() * 100}%`;
+                corazon.style.top = `${Math.random() * 100}%`;
+                document.body.appendChild(corazon);
+                setTimeout(() => corazon.remove(), 1500);
+            }
         }
     </script>
 </body>
