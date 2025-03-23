@@ -130,7 +130,8 @@
             100% { transform: scale(1.5) translate(var(--x), var(--y)) rotate(720deg); opacity: 0; }
         }
         .numero-20 {
-            display: none;
+            display: inline-flex; /* Para que el texto y el corazón estén en línea */
+            align-items: center; /* Alinea verticalmente */
             position: absolute;
             top: 0%;
             left: 50%;
@@ -141,7 +142,7 @@
             z-index: 2;
         }
         .numero-20 .corazon-rojo {
-            margin-left: 10px;
+            margin-left: 5px; /* Espacio entre el texto y el corazón */
             width: 5vw;
             height: 5vw;
             max-width: 30px;
