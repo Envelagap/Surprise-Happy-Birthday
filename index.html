@@ -14,6 +14,7 @@
             overflow: hidden;
             position: relative;
             margin: 0;
+            padding: 0;
         }
         .contenedor {
             display: flex;
@@ -25,7 +26,8 @@
         }
         .sobre {
             position: relative;
-            width: 300px;
+            width: 80%; /* Usar un porcentaje para que se ajuste al tamaño de pantalla */
+            max-width: 350px; /* Asegura que no se haga más grande que 350px */
             height: 180px;
             background: #ff69b4;
             border-radius: 10px;
@@ -38,11 +40,11 @@
         }
         .sobre.abierto {
             transform: translateX(-50px);
-            opacity: 0; /* Hacer desaparecer el sobre */
+            opacity: 0;
         }
         .tapa {
             position: absolute;
-            width: 300px;
+            width: 100%;
             height: 90px;
             background: #ff1493;
             top: 0;
@@ -67,7 +69,8 @@
         }
         .carta {
             position: relative;
-            width: 320px;
+            width: 80%; /* Hacerlo más flexible */
+            max-width: 350px;
             height: 200px;
             background: #ffffff;
             text-align: left;
@@ -84,8 +87,8 @@
         }
         .carta.expandida {
             height: auto;
-            overflow-y: auto;
             max-height: 500px;
+            overflow-y: auto;
             transform: translateY(-30px);
         }
         .ver-mas {
@@ -93,10 +96,11 @@
             background: #ff1493;
             color: white;
             border: none;
-            padding: 5px;
+            padding: 5px 10px;
             margin-top: 10px;
             cursor: pointer;
             border-radius: 5px;
+            font-size: 14px;
         }
         .serpentina {
             position: absolute;
@@ -147,35 +151,6 @@
             max-height: 130px;
             overflow: hidden;
         }
-        .corazon-cerrar {
-            width: 50px;
-            height: 50px;
-            background: #ff3366;
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            clip-path: polygon(50% 15%, 90% 0, 100% 25%, 50% 100%, 0 25%, 10% 0);
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-        }
-        .corazon-cerrar:hover {
-            transform: scale(1.1);
-        }
-
-        /* Media Queries */
-        @media (max-width: 600px) {
-            .carta {
-                width: 80%;
-            }
-            .sobre {
-                width: 220px;
-                height: 150px;
-            }
-            .corazon-cerrar {
-                width: 40px;
-                height: 40px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -189,22 +164,24 @@
             <p class="mensaje" id="mensaje">
                 <strong>Para:</strong> mi maquillista profesional y figura de hermana favorita ❤️
                 <br><br>
-                ¡Feliz cumpleaños! 🎉 Espero que este día esté lleno de alegría y bendiciones para ti.
+                ¡Feliz cumpleaños! 🎉 Espero que este día esté lleno de alegría y bendiciones para ti. 
                 <br><br>
-                Quiero que vivamos y celebremos muchas más décadas juntas llenas de felicidad y hermandad. Pero por lo pronto, me concentraré en esta que empieza este año para las dos, nuestros 20s.
+                Quiero que vivamos y celebremos muchas más décadas juntas llenas de felicidad y hermandad. Pero por lo pronto, me concentraré en esta que empieza este año para las dos, nuestros 20s. 
                 <br><br>
+                Deseo para nosotras muchos éxitos en nuestros proyectos y la obtención de nuestras metas. Pero que al mismo tiempo, nos mantengamos fieles a nosotras mismas, llenas de amor propio, reconociendo nuestros logros y vivencias.
+                <br><br>
+                Algo que quiero mencionar, que probablemente no lo haya dicho antes, es que realmente es un gusto para mí el hecho de conocerte como amiga. Ya nos conocíamos antes, pero conocerte como amiga ha sido una experiencia maravillosa para mí.
+                <br><br>
+                Ya casi completamos una década juntas, que incluye parte de nuestras infancias. Solo me queda decirte gracias por crecer conmigo durante estos años. Ha sido un verdadero placer, y espero que podamos seguir viéndonos crecer como personas y entrar en nuevas etapas de la vida con la presencia de la otra.
+                <br><br><br>
                 <strong>Att:</strong> Eve o también conocida como Andrómeda ✨
             </p>
             <button class="ver-mas" onclick="expandirMensaje()">Ver más</button>
-            <div class="corazon-cerrar" onclick="cerrarCarta()"></div>
-            <!-- Nuevo Corazón para cerrar la carta y regresar el sobre -->
-            <div class="corazon-cerrar-2" onclick="cerrarCartaConCorazon()"></div>
         </div>
     </div>
     <div class="numero-20" id="numero20">20 años
         <div class="corazon-rojo"></div>
     </div>
-
     <script>
         function abrirSobre() {
             document.querySelector('.sobre').classList.add('abierto');
@@ -233,33 +210,16 @@
         }
 
         function expandirMensaje() {
-            document.getElementById('carta').classList.add('expandida');
-        }
-
-        function cerrarCarta() {
-            document.getElementById('carta').style.display = 'none';
-            document.getElementById('numero20').style.display = 'none';
-            document.querySelector('.sobre').classList.remove('abierto');
-            document.querySelector('.tapa').classList.remove('abierta');
-        }
-
-        function cerrarCartaConCorazon() {
-            document.querySelector('.carta').style.display = 'none';
-            document.querySelector('.sobre').classList.remove('abierto');
-            document.querySelector('.tapa').classList.remove('abierta');
-            // Lluvia de corazones
-            for (let i = 0; i < 50; i++) {
-                let corazon = document.createElement('div');
-                corazon.classList.add('corazon');
-                corazon.style.left = `${Math.random() * 100}%`;
-                corazon.style.top = `${Math.random() * 100}%`;
-                document.body.appendChild(corazon);
-                setTimeout(() => corazon.remove(), 1500);
-            }
+            document.getElementById('carta').classList.toggle('expandida');
+            let mensaje = document.querySelector('.mensaje');
+            mensaje.style.maxHeight = mensaje.style.maxHeight === 'none' ? '130px' : 'none';
+            explotarSerpentinas();
+            document.querySelector('.ver-mas').style.display = 'none';
         }
     </script>
 </body>
 </html>
+
 
 
 
