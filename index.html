@@ -13,6 +13,7 @@
             background-color: #ffccff;
             overflow: hidden;
             position: relative;
+            margin: 0;
         }
         .contenedor {
             display: flex;
@@ -20,6 +21,7 @@
             gap: 20px;
             position: relative;
             flex-direction: column;
+            text-align: center;
         }
         .sobre {
             position: relative;
@@ -66,25 +68,25 @@
         .carta {
             position: relative;
             width: 320px;
-            height: 200px; /* Altura fija para la carta */
+            height: 200px;
             background: #ffffff;
-            text-align: left; /* Alineación del texto a la izquierda */
+            text-align: left;
             padding: 15px;
             display: none;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             border: 3px solid #ff69b4;
             overflow: hidden;
-            margin-top: -50px; /* Ajusté la ubicación para estar más cerca de "20 años" */
-            margin-bottom: 30px; /* Añadido margen inferior */
-            transform: translateY(0); /* Posición inicial de la carta */
-            transition: transform 0.5s ease-out; /* Transición para mover hacia arriba */
+            margin-top: -50px;
+            margin-bottom: 30px;
+            transform: translateY(0);
+            transition: transform 0.5s ease-out;
         }
         .carta.expandida {
-            height: auto; /* Cuando se expanda, la carta ocupará el espacio necesario */
-            overflow-y: auto; /* Habilita el scroll cuando el contenido excede el límite */
-            max-height: 500px; /* Máxima altura para la carta expandida */
-            transform: translateY(-30px); /* Subir la carta al expandirse */
+            height: auto;
+            overflow-y: auto;
+            max-height: 500px;
+            transform: translateY(-30px);
         }
         .ver-mas {
             display: block;
@@ -141,9 +143,38 @@
             font-size: 16px;
             line-height: 1.5;
             color: #333;
-            margin-bottom: 20px; /* Espacio entre el texto y el botón */
-            max-height: 130px; /* Limitar la altura para que se vea solo un fragmento */
-            overflow: hidden; /* Esconde el texto que excede el límite de la altura */
+            margin-bottom: 20px;
+            max-height: 130px;
+            overflow: hidden;
+        }
+        .corazon-cerrar {
+            width: 50px;
+            height: 50px;
+            background: #ff3366;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            clip-path: polygon(50% 15%, 90% 0, 100% 25%, 50% 100%, 0 25%, 10% 0);
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+        .corazon-cerrar:hover {
+            transform: scale(1.1);
+        }
+
+        /* Media Queries */
+        @media (max-width: 600px) {
+            .carta {
+                width: 80%;
+            }
+            .sobre {
+                width: 220px;
+                height: 150px;
+            }
+            .corazon-cerrar {
+                width: 40px;
+                height: 40px;
+            }
         }
     </style>
 </head>
@@ -158,27 +189,23 @@
             <p class="mensaje" id="mensaje">
                 <strong>Para:</strong> mi maquillista profesional y figura de hermana favorita ❤️
                 <br><br>
-                ¡Feliz cumpleaños! 🎉 Espero que este día esté lleno de alegría y bendiciones para ti. 
+                ¡Feliz cumpleaños! 🎉 Espero que este día esté lleno de alegría y bendiciones para ti.
                 <br><br>
-                Quiero que vivamos y celebremos muchas más décadas juntas llenas de felicidad y hermandad. Pero por lo pronto, me concentraré en esta que empieza este año para las dos, nuestros 20s. 
+                Quiero que vivamos y celebremos muchas más décadas juntas llenas de felicidad y hermandad. Pero por lo pronto, me concentraré en esta que empieza este año para las dos, nuestros 20s.
                 <br><br>
-                Deseo para nosotras muchos éxitos en nuestros proyectos y la obtención de nuestras metas. Pero que al mismo tiempo, nos mantengamos fieles a nosotras mismas, llenas de amor propio, reconociendo nuestros logros y vivencias.
-                <br><br>
-                Algo que quiero mencionar, que probablemente no lo haya dicho antes, es que realmente es un gusto para mí el hecho de conocerte como amiga. Ya nos conocíamos antes, pero conocerte como amiga ha sido una experiencia maravillosa para mí.
-                <br><br>
-                Ya casi completamos una década juntas, que incluye parte de nuestras infancias. Solo me queda decirte gracias por crecer conmigo durante estos años. Ha sido un verdadero placer, y espero que podamos seguir viéndonos crecer como personas y entrar en nuevas etapas de la vida con la presencia de la otra.
-                <br><br><br>
                 <strong>Att:</strong> Eve o también conocida como Andrómeda ✨
             </p>
             <button class="ver-mas" onclick="expandirMensaje()">Ver más</button>
+            <div class="corazon-cerrar" onclick="cerrarCarta()"></div>
         </div>
     </div>
     <div class="numero-20" id="numero20">20 años
         <div class="corazon-rojo"></div>
     </div>
+
     <script>
         function abrirSobre() {
-            document.querySelector('.sobre').classList.add('abierto'); // Hace desaparecer el sobre
+            document.querySelector('.sobre').classList.add('abierto');
             document.querySelector('.tapa').classList.add('abierta');
             setTimeout(() => {
                 document.getElementById('carta').style.display = 'block';
@@ -186,7 +213,7 @@
                 explotarSerpentinas();
             }, 500);
         }
-        
+
         function explotarSerpentinas() {
             for (let i = 0; i < 30; i++) {
                 let serpentina = document.createElement('div');
@@ -204,17 +231,19 @@
         }
 
         function expandirMensaje() {
-            document.getElementById('carta').classList.toggle('expandida');
-            let mensaje = document.querySelector('.mensaje');
-            mensaje.style.maxHeight = mensaje.style.maxHeight === 'none' ? '130px' : 'none';
+            document.getElementById('carta').classList.add('expandida');
+        }
 
-            // Ejecutar efecto de serpentinas y ocultar el botón "Ver más"
-            explotarSerpentinas();
-            document.querySelector('.ver-mas').style.display = 'none';
+        function cerrarCarta() {
+            document.getElementById('carta').style.display = 'none';
+            document.getElementById('numero20').style.display = 'none';
+            document.querySelector('.sobre').classList.remove('abierto');
+            document.querySelector('.tapa').classList.remove('abierta');
         }
     </script>
 </body>
 </html>
+
 
 
 
